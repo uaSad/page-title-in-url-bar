@@ -1,0 +1,111 @@
+@namespace url(http://www.mozilla.org/keymaster/gatekeeper/there.is.only.xul);
+@namespace html url(http://www.w3.org/1999/xhtml);
+
+#identity-box {
+	max-width: none !important;
+	transition: padding .1s ease-out;
+}
+
+#urlbar[pageproxystate="valid"]:not([nopagetitle="true"]) #identity-box {
+	background-color: rgb(240, 240, 240) !important;
+}
+
+#urlbar[pageproxystate="valid"] > #identity-box.verifiedDomain {
+  color: hsl(212,100%,30%);
+}
+
+#identity-box.verifiedDomain #identity-icon-labels/*,
+#identity-box.verifiedIdentity #identity-icon-hostport-box*/ {
+	display: none;
+}
+
+#urlbar:not([focused]) > #identity-box.verifiedIdentity #identity-icon-labels {
+	/*border: 1px solid #A9B7C9;
+	border-radius: 2px;*/
+    border: 0 solid transparent; 
+    border-right: 1px solid #A9B7C9; 
+	-moz-margin-end: 4px;
+}
+
+#identity-icon-hostport-box {
+	max-width: 1000px;
+	margin: 0 3px 0 1px;
+	transition:
+		max-width .1s ease-in,
+		margin .1s ease-out;
+}
+
+#urlbar[focused="true"] #identity-icon-hostport-box,
+#urlbar[inputBoxHover="true"] #identity-icon-hostport-box {
+	margin: 0;
+	max-width: 0;
+}
+
+#main-window[pageTitleThemeStyle="25"] #identity-box.chromeUI #identity-icon-hostport-box,
+#urlbar[nopagetitle="true"] #identity-icon-hostport-box {
+	visibility: collapse;
+}
+
+#page-proxy-stack {
+	width: auto;
+}
+
+#identity-icon-subdomain,
+#identity-icon-port {
+	opacity: .5;
+}
+
+#urlbar-pagetitle {
+	-moz-appearance: none !important;
+	border: 0 !important;
+	padding: 0 !important;
+	margin: 0 !important;
+	background: none !important;
+	color: inherit;
+	font: inherit;
+}
+
+.urlbar-input-box {
+	display: -moz-stack;
+}
+
+#urlbar[inputBoxHover="true"] #urlbar-pagetitle,
+#urlbar[focused="true"] #urlbar-pagetitle,
+#urlbar:not([inputBoxHover="true"]):not([focused="true"]):not([nopagetitle="true"])  html|input.urlbar-input {
+	opacity: 0;
+	cursor: default;
+}
+
+#urlbar[nopagetitle="true"] #urlbar-pagetitle {
+	visibility: hidden;
+}
+
+/*identity-box styling for default theme*/
+:-moz-any(#main-window[selectedSkin="classic/1.0"][pageTitleThemeStyle="14"],
+				#main-window[selectedSkin="classic/1.0"][pageTitleThemeStyle="25"])
+		#urlbar:not([nopagetitle="true"]) #identity-box {
+	background-color: rgb(255, 255, 255);
+}
+
+#main-window[selectedSkin="classic/1.0"][pageTitleThemeStyle="14"]
+		#urlbar:not([nopagetitle="true"]) #identity-box:not(.verifiedIdentity),
+#main-window[selectedSkin="classic/1.0"][pageTitleThemeStyle="25"]
+		#urlbar:not([nopagetitle="true"]) #identity-box:not(.verifiedIdentity):not(.chromeUI),
+#main-window[selectedSkin="classic/1.0"][pageTitleThemeStyle="25"]
+		#urlbar[pageproxystate="invalid"]:not([nopagetitle="true"]) #identity-box.verifiedIdentity	{
+	color: hsl(0,0%,30%);
+	-moz-margin-end: 4px;
+	background-image: -moz-linear-gradient(hsla(92,81%,16%,0),
+	                                     hsla(92,81%,16%,.2) 25%,
+	                                     hsla(92,81%,16%,.2) 75%,
+	                                     hsla(92,81%,16%,0));
+	background-position: right;
+	background-size: 1px;
+	background-repeat: no-repeat;
+}
+
+:-moz-any(#main-window[selectedSkin="classic/1.0"][pageTitleThemeStyle="14"],
+				#main-window[selectedSkin="classic/1.0"][pageTitleThemeStyle="25"])
+		#urlbar:not([nopagetitle="true"]) #identity-box.verifiedDomain {
+	color: hsl(212,100%,30%) !important;
+}
